@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Typing Game</title>
+  <link rel="stylesheet" href="typing.css" />
+</head>
+<body>
+
+  <div id="game-box">
+
+    <h1 class="title">Typing Game!</h1>
+    <p class="subtitle">Practice your typing skills with a quote from Sherlock Holmes. Click <b>start</b> to begin.</p>
+
+    <div id="countdown" class="hidden"></div>
+
+    <div id="quote"></div>
+
+    <input type="text" id="typed-value" placeholder="여기에 타이핑하세요!" disabled />
+
+    <div id="info-panel">
+      <div class="stat-block">
+        <p class="label">⏱ 시간</p>
+        <p class="value" id="time-display">0.00초</p>
+      </div>
+    </div>
+
+    <button id="start">시작하기</button>
+
+  </div>
+
+  <div id="modal-bg" class="hidden">
+    <div id="modal-box">
+      <h2>결과</h2>
+
+      <p id="result-time"></p>
+      <p id="best-score"></p>
+
+      <button class="modal-btn" onclick="closeModal()">확인</button>
+    </div>
+  </div>
+
+  <script src="typing.js"></script>
+</body>
+</html>

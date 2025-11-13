@@ -1,0 +1,149 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #f7fbff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: red;
+  text-align: center;
+  margin: 20px 0;
+}
+
+#page {
+  display: grid;
+  grid-template-columns: 15% 1fr 15%;
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.container {
+  background: none;     
+  border: none;      
+  height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.plant-holder {
+  background: none;    
+  box-shadow: none;      
+  padding: 0;            
+}
+
+.plant {
+  width: 100%;
+  max-width: 100px;     
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.plant:hover {
+  transform: scale(1.1);  
+}
+
+#terrarium-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+#terrarium {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 3 / 4;
+  min-width: 280px;
+  z-index: 1;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.jar-walls {
+  position: absolute;
+  bottom: 10%;
+  left: 20%;
+  width: 60%;
+  height: 75%;
+  background: #d1e1df;
+  border-radius: 1rem;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.jar-top {
+  position: absolute;
+  bottom: 85%;
+  left: 25%;
+  width: 50%;
+  height: 5%;
+  background: #d1e1df;
+  border-radius: 0.5rem;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.jar-bottom {
+  position: absolute;
+  bottom: 0%;
+  left: 25%;
+  width: 50%;
+  height: 1%;
+  background: #d1e1df;
+  border-radius: 1rem;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.dirt {
+  position: absolute;
+  bottom: 5%;
+  left: 20%;
+  width: 60%;
+  height: 6%;
+  background: #3a241d;
+  border-radius: 0 0 1rem 1rem;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.jar-glossy-long, .jar-glossy-short {
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  border-radius: 20px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.jar-glossy-long {
+  left: 10%;
+  top: 10%;
+  width: 10%;
+  height: 70%;
+  transform: rotate(-10deg);
+}
+
+.jar-glossy-short {
+  right: 15%;
+  top: 20%;
+  width: 7%;
+  height: 35%;
+  transform: rotate(-8deg);
+}
+
+.plant.dragging {
+  opacity: 0.6;
+  transform: scale(1.1);
+}

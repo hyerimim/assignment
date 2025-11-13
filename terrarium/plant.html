@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to my Virtual Terrarium</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <h1 style="color: red; text-align: center;">My Terrarium</h1>
+
+  <div id="page">
+    <div id="left-container" class="container">
+      <div class="plant-holder"><img class="plant" id="plant1" src="./images/plant1.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant2" src="./images/plant2.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant3" src="./images/plant3.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant4" src="./images/plant4.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant5" src="./images/plant5.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant6" src="./images/plant6.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant7" src="./images/plant7.png" draggable="true"></div>
+    </div>
+
+    <div id="terrarium-wrap">
+      <div id="terrarium">
+        <div class="jar-top"></div>
+        <div class="jar-walls">
+          <div class="jar-glossy-long"></div>
+          <div class="jar-glossy-short"></div>
+        </div>
+        <div class="dirt"></div>
+        <div class="jar-bottom"></div>
+      </div>
+    </div>
+
+    <div id="right-container" class="container">
+      <div class="plant-holder"><img class="plant" id="plant8" src="./images/plant8.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant9" src="./images/plant9.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant10" src="./images/plant10.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant11" src="./images/plant11.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant12" src="./images/plant12.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant13" src="./images/plant13.png" draggable="true"></div>
+      <div class="plant-holder"><img class="plant" id="plant14" src="./images/plant14.png" draggable="true"></div>
+    </div>
+  </div>
+
+  <script>
+    let dragged = null;
+    let highestZ = 10;
+
+    const plants = document.querySelectorAll('.plant');
+    const terrarium = document.getElementById('terrarium');
+
+    plants.forEach(plant => {
+      plant.addEventListener('dragstart', e => {
+        dragged = plant;
+        plant.classList.add('dragging');
+        highestZ++;
+        plant.style.zIndex = highestZ;
+      });
+
+      plant.addEventListener('dragend', e => {
+        plant.classList.remove('dragging');
+      });
+
+      plant.addEventListener('dblclick', () => {
+        highestZ++;
+        plant.style.zIndex = highestZ;
+      });
+    });
+
+    terrarium.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+
+    terrarium.addEventListener('drop', e => {
+      e.preventDefault();
+
+      if (dragged) {
+        const terrRect = terrarium.getBoundingClientRect();
+        const x = e.clientX - terrRect.left;
+        const y = e.clientY - terrRect.top;
+
+        dragged.style.position = 'absolute';
+        dragged.style.left = `${x - dragged.width / 2}px`;
+        dragged.style.top = `${y - dragged.height / 2}px`;
+        dragged.style.zIndex = highestZ;
+        terrarium.appendChild(dragged);
+      }
+    });
+  </script>
+</body>
+</html>
