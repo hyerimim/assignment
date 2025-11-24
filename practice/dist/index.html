@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Carbon Trigger</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Sans KR","Inter",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .card {
+      width: 360px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.05);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .card img {
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+      display: block;
+    }
+
+    .card__title {
+      text-align: center;
+      padding: 16px 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .form-data { padding: 18px 20px 22px; }
+
+    .form-data h2 {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #222;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      background: #f3f5f7;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+      border: 1px solid #007aff;
+      box-shadow: 0 0 0 3px rgba(0,122,255,0.18);
+      background: #fff;
+    }
+
+    .search-btn {
+      width: 100%;
+      margin-top: 6px;
+      background: #2f6feb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      padding: 11px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .search-btn:hover { background: #2259c3; }
+
+    .result { padding: 18px 20px 20px; text-align: left; }
+
+    .result-container {
+      border: 1px solid #1113;
+      border-radius: 8px;
+      padding: 14px 12px;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+
+    .result-container p {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .clear-btn {
+      width: 100%;
+      background: #2f6feb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .clear-btn:hover { background: #2259c3; }
+
+    body.dark-mode { background: #0f172a; color: #e2e8f0; }
+    body.dark-mode .card { background: #111827; border-color: rgba(255,255,255,0.05); }
+    body.dark-mode .form-group label { color: #e5e7eb; }
+    body.dark-mode .form-group input { background: rgba(255,255,255,0.05); color:#fff; }
+    body.dark-mode .result-container { background: rgba(255,255,255,0.03); }
+    .toggle-mode {
+      position: fixed; top: 20px; right: 20px;
+      background: #2f6feb; color: white; border: none;
+      border-radius: 50px; padding: 8px 16px; cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="toggle-mode">🌙 Dark Mode</button>
+
+  <div class="card">
+    <img src="plants-people.png" alt="plants and people" />
+    <h1 class="card__title">Welcome to Your Personal Carbon Trigger!</h1>
+
+    <form class="form-data">
+      <h2>New? Add your Information</h2>
+
+      <div class="form-group">
+        <label for="region">Region Name</label>
+        <input id="region" class="region-name" type="text" required />
+      </div>
+
+      <div class="form-group">
+        <label for="api">Your API Key from tmrow</label>
+        <input id="api" class="api-key" type="password" required />
+      </div>
+
+      <button class="search-btn" type="submit">Submit</button>
+    </form>
+
+    <div class="result">
+      <div class="loading">loading...</div>
+      <div class="errors"></div>
+      <div class="result-container">
+        <p><strong>Region:</strong> <span class="my-region"></span></p>
+        <p><strong>Carbon Usage:</strong> <span class="carbon-usage"></span></p>
+        <p><strong>Fossil Fuel Percentage:</strong> <span class="fossil-fuel"></span></p>
+      </div>
+      <button class="clear-btn">Change region</button>
+    </div>
+
+  </div>
+
+  <script src="toggle.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
