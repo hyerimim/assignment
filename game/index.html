@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <title>Space Game</title>
+  <style>
+    #nextStageBtn {
+      margin-top: 8px;
+      padding: 10px 16px;
+      font-size: 16px;
+      display: inline-block;
+      background: #444;
+      color: #ddd;
+      border: 1px solid #777;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    #nextStageBtn.ready {
+      background: #22aa55;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(34, 170, 85, 0.8);
+      border-color: #22aa55;
+    }
+    #nextStageBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
-<canvas id="myCanvas" width="1024" height="768" style="border:1px solid #d3d3d3;">
-  Your browser does not support the HTML5 canvas tag.
-</canvas>
+<div id="gameContainer" style="position: relative; display: inline-block;">
+  <canvas id="myCanvas" width="1280" height="900" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+  <button id="nextStageBtn" style="position:absolute; left:50%; transform:translateX(-50%); bottom:20px;">Next Stage</button>
+</div>
 
 <script src="app.js"></script>
 </body>
